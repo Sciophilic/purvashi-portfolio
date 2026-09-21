@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Purvashi Ramparsad · Portfolio</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- MILKY WAY BACKGROUND (grid + stars, theme-aware) -->
+    <div class="milkyway" id="milkyway" aria-hidden="true">
+        <div class="milkyway-grid"></div>
+        <div class="milkyway-nebula"></div>
+        <div class="milkyway-stars milkyway-stars--far" id="starsFar"></div>
+        <div class="milkyway-stars milkyway-stars--mid" id="starsMid"></div>
+        <div class="milkyway-stars milkyway-stars--near" id="starsNear"></div>
+        <div class="milkyway-shooting"></div>
+    </div>
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- CURSOR + GLITTER -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+    <div class="glitter-layer" id="glitterLayer" aria-hidden="true"></div>
+
+    <!-- HERO -->
+    <section id="hero" class="hero-section">
+        <div class="hero-backdrop"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-vignette"></div>
+
+        <div class="hero-split">
+
+            <div class="hero-left">
+                <div class="portrait-wrap">
+                    <div class="portrait-glow"></div>
+                    <div class="portrait-frame">
+                        <img src="images/profile.jpeg" alt="Purvashi Ramparsad">
+                    </div>
+                </div>
+
+                <div class="hero-caption">
+                    <h1 class="term-title">Purvashi <span class="highlight">Ramparsad</span></h1>
+                    <p class="tagline term-tagline">Aspiring Data Analyst</p>
+                    <p class="description">Passionate about uncovering stories hidden in data and exploring the intersection of AI, Cloud Computing, Big Data, and Data Science — always looking for the patterns, trends, and insights that others might miss, and turning them into decisions that make a real difference.</p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn-glass">View My Work</a>
+                        <a href="#contact" class="btn-glass btn-glass--ghost">Contact Me</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <div class="setup-stage" id="setupStage">
+
+                    <div class="pc-scene">
+
+                        <img src="images/cpu-tower.png" alt="RGB PC Tower" class="pc-tower-img">
+
+                        <div class="pc-monitor">
+                            <img src="images/monitor.png" alt="Gaming Monitor" class="pc-monitor-img">
+
+                            <div class="pc-monitor-screen">
+                                <div class="screen-inner" id="screenInner">
+
+                                    <div class="dash-topbar">
+                                        <div class="dash-brand">PURVASHI</div>
+                                        <div class="dash-live"><span class="dash-live-dot"></span>LIVE</div>
+                                        <div class="dash-time" id="dashTime">--:--:--</div>
+                                    </div>
+
+                                    <div class="dash-kpis">
+                                        <div class="dash-kpi">
+                                            <div class="dash-kpi-label">EVENTS/S</div>
+                                            <div class="dash-kpi-value" id="kpiEvents">0</div>
+                                        </div>
+                                        <div class="dash-kpi">
+                                            <div class="dash-kpi-label">ACTIVE</div>
+                                            <div class="dash-kpi-value" id="kpiActive">0</div>
+                                        </div>
+                                        <div class="dash-kpi">
+                                            <div class="dash-kpi-label">LATENCY</div>
+                                            <div class="dash-kpi-value" id="kpiLatency">0<span class="dash-unit">ms</span></div>
+                                        </div>
+                                        <div class="dash-kpi">
+                                            <div class="dash-kpi-label">UPTIME</div>
+                                            <div class="dash-kpi-value" id="kpiUptime">99.9<span class="dash-unit">%</span></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dash-charts">
+                                        <div class="dash-chart-block">
+                                            <div class="dash-chart-title">STREAM VOLUME</div>
+                                            <svg class="dash-line" viewBox="0 0 300 100" preserveAspectRatio="none">
+                                                <defs>
+                                                    <linearGradient id="lineFillGrad" x1="0" y1="0" x2="0" y2="1">
+                                                        <stop offset="0%" stop-color="#00d9ff" stop-opacity="0.5"/>
+                                                        <stop offset="100%" stop-color="#00d9ff" stop-opacity="0"/>
+                                                    </linearGradient>
+                                                </defs>
+                                                <polyline id="dashLineFill" points="" fill="url(#lineFillGrad)" stroke="none"/>
+                                                <polyline id="dashLine" points="" fill="none" stroke="#00d9ff" stroke-width="2"/>
+                                            </svg>
+                                        </div>
+                                        <div class="dash-chart-block">
+                                            <div class="dash-chart-title">BOROUGH LOAD</div>
+                                            <div class="dash-bars" id="dashBars">
+                                                <span></span><span></span><span></span><span></span><span></span><span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dash-log" id="dashLog"></div>
+
+                                    <div class="dash-ticker">
+                                        <div class="dash-ticker-track" id="dashTicker"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pc-keyboard">
+                            <div class="pc-keyboard-glow"></div>
+                            <img src="images/keyboard.png" alt="RGB Mechanical Keyboard" class="pc-keyboard-img">
+                        </div>
+
+                        <div class="pc-mouse-mat">
+                            <div class="pc-mouse-wrap">
+                                <div class="pc-mouse">
+                                    <span class="pc-mouse-led"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button class="power-toggle" id="powerToggle" aria-label="Toggle power" type="button">
+                        <span class="power-dot"></span>
+                        <span class="power-label">POWER</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="hero-scroll-hint">
+            <span>Scroll</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </div>
+    </section>
+
+    <!-- NAV -->
+    <nav class="main-nav">
+        <div class="logo term-logo">PURVASHI</div>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#journey">Journey</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode" type="button">
+                    <svg class="theme-icon theme-icon--sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="4"/>
+                        <line x1="12" y1="2" x2="12" y2="5"/>
+                        <line x1="12" y1="19" x2="12" y2="22"/>
+                        <line x1="2" y1="12" x2="5" y2="12"/>
+                        <line x1="19" y1="12" x2="22" y2="12"/>
+                        <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/>
+                        <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+                        <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/>
+                        <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <svg class="theme-icon theme-icon--moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+            </li>
+            <li><a href="Purvashi_Ramparsad_CV.pdf" download class="cv-btn">CV</a></li>
+        </ul>
+    </nav>
+
+    <main class="portfolio-content">
+
+
+        <!-- ABOUT -->
+        <section id="about" class="reveal">
+            <h2 class="section-title">Who I Am</h2>
+            <div class="section-divider"></div>
+
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>I am a Big Data Analytics student with a strong interest in data analysis, visualisation, and problem-solving.</p>
+                    <p>I enjoy exploring datasets to uncover trends, patterns, and insights that can support better decisions — whether that's cleaning messy data, spotting an unexpected trend, or building a visual that makes something click. My goal is to grow into a Data Analyst who can take complex information and present it in a way that is clear, meaningful, and useful.</p>
+                    <p>Outside of my studies, I am curious about AI, cloud computing, and emerging technologies — and I am always looking for opportunities to learn and improve.</p>
+
+                    <div class="quote">"I've always been fascinated by how data can tell stories and predict the future. My goal is to become a Data Analyst who builds solutions that make a real impact."</div>
+
+                    <div class="about-interests">
+                        <span>Big Data Analytics</span>
+                        <span>Artificial Intelligence</span>
+                        <span>Data Science</span>
+                        <span>Software Development</span>
+                        <span>Gaming</span>
+                        <span>Traveling</span>
+                        <span>Photography</span>
+                        <span>Exploring Cultures</span>
+                    </div>
+
+                    <div class="about-languages">
+                        <p class="about-languages-label">LANGUAGES</p>
+                        <div class="languages-grid">
+                            <span>English — Fluent</span>
+                            <span>French — Intermediate</span>
+                            <span>Hindi — Intermediate</span>
+                            <span>Mauritian Creole — Native</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills" class="skills-carousel-section reveal">
+            <div class="logo-train">
+                <div class="logo-train-track" id="trainTop"></div>
+            </div>
+
+            <div class="skills-inner">
+                <h2 class="section-title">My Tech Stack</h2>
+                <div class="section-divider"></div>
+
+                <div class="tech-grid" id="techGrid"></div>
+            </div>
+
+            <div class="logo-train">
+                <div class="logo-train-track reverse" id="trainBottom"></div>
+            </div>
+        </section>
+
+        <!-- JOURNEY -->
+        <section id="journey" class="reveal">
+            <h2 class="section-title">Education &amp; Experience</h2>
+            <div class="section-divider"></div>
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2022</div>
+                    <h4>School Certificate</h4>
+                    <p>Rajcoomar Gujadhur State Secondary School</p>
+
+                    <button class="subjects-toggle" data-target="subjects-sc" type="button">
+                        <span>View Subjects</span>
+                    </button>
+
+                    <div class="subjects-panel" id="subjects-sc">
+                        <div class="subjects-grid">
+                            <span>Mathematics</span><span>English</span><span>French</span>
+                            <span>Hindi</span><span>Economics</span><span>Accounting</span>
+                            <span>Additional Mathematics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2024</div>
+                    <h4>Higher School Certificate</h4>
+                    <p>Rajcoomar Gujadhur State Secondary School</p>
+
+                    <button class="subjects-toggle" data-target="subjects-hsc" type="button">
+                        <span>View Subjects</span>
+                    </button>
+
+                    <div class="subjects-panel" id="subjects-hsc">
+                        <div class="subjects-group">
+                            <p class="subjects-group-label">MAIN SUBJECTS</p>
+                            <div class="subjects-grid">
+                                <span>Mathematics</span><span>Economics</span><span>Accounting</span>
+                            </div>
+                        </div>
+                        <div class="subjects-group">
+                            <p class="subjects-group-label">SUBSIDIARY SUBJECTS</p>
+                            <div class="subjects-grid">
+                                <span>General Paper (GP)</span><span>French</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2025 — Present</div>
+                    <h4>Diploma in Emerging Technologies — Big Data Analytics</h4>
+                    <p>Polytechnics Mauritius Ltd, Ebene</p>
+
+                    <button class="subjects-toggle" data-target="subjects-dip" type="button">
+                        <span>View Modules</span>
+                    </button>
+
+                    <div class="subjects-panel" id="subjects-dip">
+                        <div class="subjects-group">
+                            <p class="subjects-group-label">YEAR 1 — SEM 1</p>
+                            <div class="subjects-grid">
+                                <span>Decision Mathematics</span>
+                                <span>Python Programming Methodology 1</span>
+                                <span>Electronics Circuits &amp; Communication</span>
+                                <span>Computer Architecture &amp; Operating Systems</span>
+                                <span>Database Design &amp; Implementation</span>
+                                <span>Competency Skills 1</span>
+                            </div>
+                        </div>
+                        <div class="subjects-group">
+                            <p class="subjects-group-label">YEAR 1 — SEM 2</p>
+                            <div class="subjects-grid">
+                                <span>Cloud Computing and Techniques</span>
+                                <span>Python Programming Methodology 2</span>
+                                <span>Internet of Things Design Principles</span>
+                                <span>Big Data Architecture &amp; Programming</span>
+                                <span>Network Technologies &amp; Design</span>
+                            </div>
+                        </div>
+                        <div class="subjects-group">
+                            <p class="subjects-group-label">YEAR 2 — SEM 1</p>
+                            <div class="subjects-grid">
+                                <span>Mobile Communication Systems</span>
+                                <span>Foundation of AI &amp; Machine Learning</span>
+                                <span>Computer Law &amp; Cybersecurity</span>
+                                <span>Analysis &amp; Design in Practice</span>
+                                <span>R Big Data Analytics &amp; Architecture</span>
+                                <span>Competency Skills 2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CERTIFICATES -->
+        <section id="certificates" class="reveal">
+            <h2 class="section-title">My Certifications</h2>
+            <div class="section-divider"></div>
+
+            <p class="certs-intro">Professional certifications and courses I have completed — click any certificate to view it in full.</p>
+
+            <div class="certs-grid">
+
+                <div class="cert-card" data-cert="images/certificate-knowledgeplus.jpeg">
+                    <div class="cert-thumbnail" style="background-image: url('images/certificate-knowledgeplus.jpeg');">
+                        <div class="cert-overlay">
+                            <span class="cert-view-icon">🔍</span>
+                            <span class="cert-view-text">VIEW</span>
+                        </div>
+                    </div>
+                    <div class="cert-body">
+                        <div class="cert-issuer">KNOWLEDGEPLUS · COMPUTER TRAINING CENTER LTD</div>
+                        <h4 class="cert-title">Administrative Software Package (L1)</h4>
+                        <p class="cert-details">
+                            <span class="cert-date">📅 September 2024</span>
+                            <span class="cert-grade">🏆 Grade A</span>
+                        </p>
+                        <p class="cert-desc">3-month course covering Typing Skills, Word Processing, Spreadsheet, Presentation Software, Internet &amp; Email, and Security Issues.</p>
+                        <div class="cert-meta">
+                            <span>MQA Approved</span>
+                            <span>Cert No: RP83744A</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cert-card" data-cert="images/certificate-simplilearn-excel.png">
+                    <div class="cert-thumbnail" style="background-image: url('images/certificate-simplilearn-excel.png');">
+                        <div class="cert-overlay">
+                            <span class="cert-view-icon">🔍</span>
+                            <span class="cert-view-text">VIEW</span>
+                        </div>
+                    </div>
+                    <div class="cert-body">
+                        <div class="cert-issuer">MICROSOFT · SIMPLILEARN · SKILLUP</div>
+                        <h4 class="cert-title">Business Analytics with Excel</h4>
+                        <p class="cert-details">
+                            <span class="cert-date">📅 September 2026</span>
+                        </p>
+                        <p class="cert-desc">Professional course covering business analytics fundamentals, data analysis techniques, and Excel-driven decision-making.</p>
+
+                        <button class="cert-learn-toggle" data-target="cert-learn-simplilearn" type="button">
+                            <span class="cert-learn-label">What I learned</span>
+                            <svg class="cert-learn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+
+                        <div class="cert-learn-panel" id="cert-learn-simplilearn">
+                            <ul class="cert-learn-list">
+                                <li>How organisations use data to make strategic, operational, and tactical decisions</li>
+                                <li>Cleaning, filtering, sorting, and shaping raw business data</li>
+                                <li>Turning business questions into data questions and drawing conclusions</li>
+                            </ul>
+                        </div>
+
+                        <div class="cert-meta">
+                            <span>Completion Certificate</span>
+                            <span>Cert Code: 10707693</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cert-card cert-card--placeholder">
+                    <div class="cert-thumbnail cert-thumbnail--placeholder">
+                        <span class="cert-placeholder-icon">🎓</span>
+                    </div>
+                    <div class="cert-body">
+                        <div class="cert-issuer">COMING SOON</div>
+                        <h4 class="cert-title">More certifications on the way</h4>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects" class="reveal">
+            <h2 class="section-title">What I've Built</h2>
+            <div class="section-divider"></div>
+
+            <div class="projects-grid">
+
+                <div class="project-card">
+                    <div class="project-gallery" data-gallery="kafka">
+                        <div class="gallery-main" style="background-image: url('images/project-kafka-grafana.jpg');"></div>
+                        <div class="gallery-thumbs">
+                            <div class="gallery-thumb active" data-img="images/project-kafka-grafana.jpg" style="background-image: url('images/project-kafka-grafana.jpg');"></div>
+                            <div class="gallery-thumb" data-img="images/project-kafka-data-explorer.jpg" style="background-image: url('images/project-kafka-data-explorer.jpg');"></div>
+                        </div>
+                        <span class="gallery-counter">1 / 2</span>
+                    </div>
+                    <div class="project-body">
+                        <h4>Real-Time Data Streaming Pipeline</h4>
+                        <p class="project-tech">Apache Kafka · Python · InfluxDB · Grafana</p>
+                        <p>Real-time pipeline that streams the London Fire Brigade dataset through Kafka, stores it in InfluxDB, and visualises it live on Grafana.</p>
+                        <a href="https://github.com/Sciophilic/bigdata-a1-kafka-grafana" target="_blank" rel="noopener" class="project-link">→ View on GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-gallery" data-gallery="spark">
+                        <div class="gallery-main" style="background-image: url('images/project-spark-dashboard-1.jpg');"></div>
+                        <div class="gallery-thumbs">
+                            <div class="gallery-thumb active" data-img="images/project-spark-dashboard-1.jpg" style="background-image: url('images/project-spark-dashboard-1.jpg');"></div>
+                            <div class="gallery-thumb" data-img="images/project-spark-dashboard-2.jpg" style="background-image: url('images/project-spark-dashboard-2.jpg');"></div>
+                        </div>
+                        <span class="gallery-counter">1 / 2</span>
+                    </div>
+                    <div class="project-body">
+                        <h4>Batch Analytics with Spark + Snowflake</h4>
+                        <p class="project-tech">Apache Spark · Snowflake · Streamlit</p>
+                        <p>Batch pipeline that cleans and aggregates data with PySpark, loads results into Snowflake, and presents findings through a Streamlit dashboard.</p>
+                        <a href="https://github.com/Sciophilic/bigdata-a2-spark-snowflake" target="_blank" rel="noopener" class="project-link">→ View on GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+    <div class="project-gallery" data-gallery="storm">
+                        <div class="gallery-main" style="background-image: url('images/project-storm-dashboard-1.jpg');"></div>
+                        <div class="gallery-thumbs">
+                            <div class="gallery-thumb active" data-img="images/project-storm-dashboard-1.jpg"  style="background-image: url('images/project-storm-dashboard-1.jpg');"></div>
+                            <div class="gallery-thumb" data-img="images/project-storm-dashboard-2.jpg"  style="background-image: url('images/project-storm-dashboard-2.jpg');"></div>
+                            <div class="gallery-thumb" data-img="images/project-storm-dashboard-3.jpg"  style="background-image: url('images/project-storm-dashboard-3.jpg');"></div>
+                            <div class="gallery-thumb" data-img="images/project-storm-dashboard-4.jpg"  style="background-image: url('images/project-storm-dashboard-4.jpg');"></div>
+                            <div class="gallery-thumb" data-img="images/project-storm-dashboard-5.jpg"  style="background-image: url('images/project-storm-dashboard-5.jpg');"></div>
+                            <div class="gallery-thumb" data-img="images/project-storm-dashboard-6.jpg"  style="background-image: url('images/project-storm-dashboard-6.jpg');"></div>
+                            <div class="gallery-thumb" data-img="images/project-storm-dashboard-7.jpg"  style="background-image: url('images/project-storm-dashboard-7.jpg');"></div>
+                            <div class="gallery-thumb" data-img="images/project-storm-dashboard-8.jpg"  style="background-image: url('images/project-storm-dashboard-8.jpg');"></div>
+                            <div class="gallery-thumb" data-img="images/project-storm-dashboard-9.jpg"  style="background-image: url('images/project-storm-dashboard-9.jpg');"></div>
+                            <div class="gallery-thumb" data-img="images/project-storm-dashboard-10.jpg" style="background-image: url('images/project-storm-dashboard-10.jpg');"></div>
+                        </div>
+                        <span class="gallery-counter">1 / 10</span>
+                    </div>
+                    <div class="project-body">
+                        <h4>Metro Interstate Traffic Dashboard</h4>
+                        <p class="project-tech">Apache Storm · Streamlit · Python</p>
+                        <p>Real-time traffic stream processing dashboard with sliding/tumbling window analytics, intensity gauge, and automated alerts.</p>
+                        <a href="https://github.com/Sciophilic/bigdata-a3-storm-streamlit" target="_blank" rel="noopener" class="project-link">→ View on GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-gallery" data-gallery="air">
+                        <div class="gallery-main" data-img="images/project-air-quality.png" style="background-image: url('images/project-air-quality.png');"></div>
+                    </div>
+                    <div class="project-body">
+                        <h4>Air Quality Monitoring &amp; Prediction</h4>
+                        <p class="project-tech">Python · Pandas · Scikit-learn · Arduino</p>
+                        <p class="project-group">👥 Group Project</p>
+                        <p>Real-time air quality monitoring system with ML-based prediction models, displaying live AQI, temperature, and humidity readings.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-gallery" data-gallery="audio">
+                        <div class="gallery-main" data-img="images/project-audio.png" style="background-image: url('images/project-audio.png');"></div>
+                    </div>
+                    <div class="project-body">
+                        <h4>Audio Signal Amplification</h4>
+                        <p class="project-tech">Electronics · Signal Processing</p>
+                        <p class="project-group">👥 Group Project</p>
+                        <p>Audio signal amplification circuit design and implementation for enhanced sound processing, built on a breadboard with op-amp components.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-gallery" data-gallery="vending">
+                        <div class="gallery-main" data-img="images/project-vending-web.png" style="background-image: url('images/project-vending-web.png');"></div>
+                    </div>
+                    <div class="project-body">
+                        <h4>Ebene Campus Vending Machine</h4>
+                        <p class="project-tech">Python · Flask · SQLite · HTML/CSS</p>
+                        <p>Web-based vending machine application with 18+ products, money insertion, purchase flow, and receipt generation.</p>
+                        <a href="https://github.com/Sciophilic/vending-machine" target="_blank" rel="noopener" class="project-link">→ View on GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-gallery" data-gallery="django-vending">
+                        <div class="gallery-main" data-img="images/project-django-vending.jpg" style="background-image: url('images/project-django-vending.jpg');"></div>
+                    </div>
+                    <div class="project-body">
+                        <h4>Django Smart Vending Machine System</h4>
+                        <p class="project-tech">Python · Django · SQLite · HTML/CSS</p>
+                        <p>Full-stack vending machine system built with Django — product management, purchase flow, admin dashboard, and receipt generation using Django's ORM and templating.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-gallery" data-gallery="ml">
+                        <div class="gallery-main" data-img="images/project-student-ml.png" style="background-image: url('images/project-student-ml.png');"></div>
+                    </div>
+                    <div class="project-body">
+                        <h4>Student Performance ML Project</h4>
+                        <p class="project-tech">Python · Scikit-learn · Pandas · Jupyter</p>
+                        <p>Machine learning analysis and prediction of student performance based on study time, attendance, and demographics.</p>
+                        <a href="https://github.com/Sciophilic/student-performance-ml-project" target="_blank" rel="noopener" class="project-link">→ View on GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-gallery" data-gallery="tkinter">
+                        <div class="gallery-main" data-img="images/project-tkinter.jpg" style="background-image: url('images/project-tkinter.jpg');"></div>
+                    </div>
+                    <div class="project-body">
+                        <h4>Tkinter Vending Machine</h4>
+                        <p class="project-tech">Python · Tkinter</p>
+                        <p>GUI-based vending machine application built with Python's Tkinter library, simulating product selection, payment, and dispensing.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="reveal">
+            <div class="contact-split">
+
+                <div class="contact-left">
+                    <p class="contact-eyebrow">LET'S CONNECT</p>
+                    <h2 class="contact-heading">I'd love to hear from you</h2>
+
+                    <div class="contact-icons">
+                        <a href="mailto:purvashi1401@gmail.com" class="contact-icon-link" aria-label="Email">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </a>
+
+                        <a href="https://github.com/Sciophilic" target="_blank" rel="noopener" class="contact-icon-link" aria-label="GitHub">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.04 11.04 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56C20.22 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/>
+                            </svg>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/purvashi-ramparsad" target="_blank" rel="noopener" class="contact-icon-link" aria-label="LinkedIn">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="contact-location">
+                        <span class="contact-icon-static">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </span>
+                        <span class="contact-location-text">Royal Road, Laventure, Flacq — Mauritius</span>
+                    </div>
+                </div>
+
+                <div class="contact-right">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-field">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-field">
+                            <input type="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-field">
+                            <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+                        </div>
+                        <button type="submit" class="send-btn">
+                            <span>Send Message</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top" type="button">↑</button>
+
+    <footer class="term-footer">
+        <p>© 2026 PURVASHI_RAMPARSAD</p>
+    </footer>
+
+    <div class="cert-lightbox" id="certLightbox">
+        <button class="cert-lightbox-close" id="certLightboxClose" aria-label="Close" type="button">✕</button>
+        <img class="cert-lightbox-img" id="certLightboxImg" src="" alt="Certificate">
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <img src="" alt="Project image" id="lightboxImg">
+        <span class="lightbox-nav lightbox-prev" id="lightboxPrev">&#10094;</span>
+        <span class="lightbox-nav lightbox-next" id="lightboxNext">&#10095;</span>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
